@@ -3,25 +3,45 @@
 
   <!-- Add Student Button -->
   <div class="button-container">
-    <button (click)="addStudent()">+ Add Student</button>
+    <button class="btn btn-primary" (click)="addStudent()">
+      + Add Student
+    </button>
   </div>
 
   <!-- Student Table -->
-  <table>
-    <thead>
+  <table class="table table-striped mt-3">
+    <thead class="thead-dark">
       <tr>
         <th>Name</th>
         <th>Roll Number</th>
         <th>Class</th>
         <th>Section</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let student of students">
+      <tr *ngFor="let student of students; let i = index">
         <td>{{ student.name }}</td>
         <td>{{ student.rollNo }}</td>
         <td>{{ student.class }}</td>
         <td>{{ student.section }}</td>
+        <td>
+          <!-- Edit Icon -->
+          <img
+            src="edit.png"
+            alt="Edit"
+            class="action-icon"
+            (click)="editStudent(i)"
+          />
+
+          <!-- Delete Icon -->
+          <img
+            src="delete.png"
+            alt="Delete"
+            class="action-icon"
+            (click)="deleteStudent(i)"
+          />
+        </td>
       </tr>
     </tbody>
   </table>

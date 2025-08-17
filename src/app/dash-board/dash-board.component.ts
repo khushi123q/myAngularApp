@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 interface Student {
   name: string;
@@ -7,22 +9,40 @@ interface Student {
   section: string;
 }
 
-
 @Component({
   selector: 'app-dash-board',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './dash-board.component.html',
-  styleUrl: './dash-board.component.css'
+  styleUrls: ['./dash-board.component.css']
 })
 export class DashBoardComponent {
-  students: Student[] = [
-    { name: 'Rahul Sharma', rollNo: 101, class: '10', section: 'A' },
-    { name: 'Priya Verma', rollNo: 102, class: '10', section: 'B' },
-    { name: 'Aman Singh', rollNo: 103, class: '9', section: 'A' },
-  ];
+  students: Student[] = [];
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.loadStudents();
+  }
+
+  loadStudents() {
+    const storedStudents = localStorage.getItem('students');
+    this.students = storedStudents ? JSON.parse(storedStudents) : [];
+  }
 
   addStudent() {
-    const newStudent: Student = { name: 'New Student', rollNo: 104, class: '9', section: 'C' };
-    this.students.push(newStudent);
+    this.router.navigate(['/add-student']);
+  }
+
+  editStudent(index: number) {
+    // Pass index in queryParams so AddStudent knows we are editing
+    this.router.navigate(['/add-student'], { queryParams: { index } });
+  }
+
+  deleteStudent(index: number) {
+    if (confirm('Are you sure you want to delete this student?')) {
+      this.students.splice(index, 1);
+      localStorage.setItem('students', JSON.stringify(this.students));
+    }
   }
 }

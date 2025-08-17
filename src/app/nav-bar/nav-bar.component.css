@@ -1,0 +1,30 @@
+/* Navbar Styling */
+.navbar {
+  background: linear-gradient(90deg, #4a90e2, #0072ff);
+  color: white;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.navbar-links a {
+  color: #f0f0f0;
+  margin-left: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #ffd700;
+  text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.7);
+}
