@@ -1,0 +1,28 @@
+<div class="dashboard-container">
+  <h2>Student Dashboard</h2>
+
+  <!-- Add Student Button -->
+  <div class="button-container">
+    <button (click)="addStudent()">+ Add Student</button>
+  </div>
+
+  <!-- Student Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Roll Number</th>
+        <th>Class</th>
+        <th>Section</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.name }}</td>
+        <td>{{ student.rollNo }}</td>
+        <td>{{ student.class }}</td>
+        <td>{{ student.section }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
